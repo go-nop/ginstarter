@@ -1,0 +1,61 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v2.1.1
+    hooks:
+      - id: conventional-pre-commit
+        stages: [commit-msg]
+        args: []
+
+  - repo: local
+    hooks:
+      - id: go-fmt
+        entry: scripts/run-go-fmt.sh
+        name: 'execute go fmt'
+        files: '\.go$'
+        language: 'script'
+        description: "Runs `gofmt`, requires golang"
+
+      - id: go-imports
+        name: 'execute go imports'
+        entry: scripts/run-go-imports.sh
+        files: '\.go$'
+        language: 'script'
+        description: "Runs `goimports`, requires golang"
+
+      - id: golangci-lint
+        name: 'execute golangci-lint'
+        entry: scripts/run-golangci-lint.sh
+        types: [go]
+        language: 'script'
+        pass_filenames: false
+        description: "Runs `golangci-lint`, requires https://github.com/golangci/golangci-lint"
+
+      - id: go-cyclo
+        name: 'execute go-cyclo'
+        entry: scripts/run-go-cyclo.sh
+        files: '\.go$'
+        language: 'script'
+        description: "Runs `gocyclo`, requires https://github.com/fzipp/gocyclo"
+        args: [-over=25]
+
+      - id: go-unit-tests
+        name: 'execute go-unit-tests'
+        entry: scripts/run-go-unit-tests.sh
+        files: '\.go$'
+        language: 'script'
+        description: "Runs `go test`"
+
+      - id: go-mod-tidy
+        name: 'execute go-mod-tidy'
+        entry: scripts/run-go-mod-tidy.sh
+        pass_filenames: false
+        language: 'script'
+        description: "Runs `go mod tidy -v`, requires golang"
