@@ -169,6 +169,30 @@ To update the package name and repository structure for your project, use the pr
 4. Verify the changes and start development!
 
 ---
+## Pre-Commit Hooks
+
+To maintain code quality and consistency, we use [pre-commit](https://pre-commit.com/) hooks. Follow these steps to set up pre-commit:
+
+1. Install `pre-commit`:
+
+   ```bash
+   pip install pre-commit
+   ```
+
+2. Install the hooks defined in `.pre-commit-config.yaml`:
+
+   ```bash
+   pre-commit install
+   ```
+
+3. Run pre-commit checks manually (optional):
+
+   ```bash
+   pre-commit run --all-files
+   ```
+
+Pre-commit hooks will now run automatically on every `git commit`, ensuring that your code adheres to the defined standards.
+
 
 ---
 
