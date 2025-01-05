@@ -111,7 +111,7 @@ ginstarter/
 
 4. Run the database migrations:
     ```bash
-    go run cmd/migrate.go
+    go run main.go db:migrate
     ```
 
 5. Run the application:
@@ -143,6 +143,32 @@ Response:
   "data": null
 }
 ```
+
+---
+
+## Customizing the Package Name
+
+To update the package name and repository structure for your project, use the provided `setup.sh` script:
+
+### Steps:
+
+1. Run the script:
+
+   ```bash
+   ./setup.sh
+   ```
+
+2. Enter the new Go package name when prompted (e.g., `github.com/yourusername/yourproject`).
+
+3. The script will:
+   - Update the `go.mod` file.
+   - Replace old imports in all `.go` files with the new package name.
+   - Update the Git remote origin to the new repository URL.
+   - Move the repository folder to match the new project name.
+
+4. Verify the changes and start development!
+
+---
 
 ---
 
