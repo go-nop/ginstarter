@@ -1,4 +1,7 @@
 # Ginstarter
+![GolangVersion](https://img.shields.io/github/go-mod/go-version/go-nop/ginstarter)
+![License](https://img.shields.io/github/license/go-nop/ginstarter)
+
 
 Ginstarter is a modern and lightweight boilerplate for building robust and scalable RESTful APIs using the [Gin Gonic](https://github.com/gin-gonic/gin) framework. It is designed to help developers kickstart their web application projects with clean, modular, and maintainable code.
 
@@ -15,12 +18,22 @@ Ginstarter is a modern and lightweight boilerplate for building robust and scala
 
 ---
 
+## Technologies
+- [Gin Gonic](https://github.com/gin-gonic/gin): High-performance HTTP web framework.
+- [GORM](https://gorm.io/): ORM library for database interaction.
+- [Logrus](https://github.com/sirupsen/logrus): Logging library.
+- [Zap](https://github.com/uber-go/zap): High-performance logging library.
+- [Testify](https://github.com/stretchr/testify): Testing utilities.
+- [Goose](https://github.com/pressly/goose): Database migration tool.
+
+---
+
 ## Project Structure
 ```
-myapp/
+ginstarter/
 ├── cmd/
-│   ├── app.go
-│   └── command.go
+│   ├── app.go                               # Application initialization
+│   └── command.go                          # Command line utilities
 ├── config/
 │   └── config.go                             # Configuration handling
 ├── internal/
@@ -29,7 +42,7 @@ myapp/
 │   │   ├── middleware.go
 │   │   └── user_route.go
 │   ├── handler/                              # Handler functions for routes
-│   │   ├── v1/
+│   │   ├── v1/                              # API version
 │   │   │   ├── users/
 │   │   │   │   ├── constructor.go            # Dependency injection
 │   │   │   │   ├── view_handler.go           # Request handling for view endpoints
@@ -59,6 +72,7 @@ myapp/
 ├── test/                                     # Test cases
 │   ├── user_test.go
 │   └── post_test.go
+├── main.go                                   # Application entry point
 ├── go.mod
 └── go.sum
 ```
