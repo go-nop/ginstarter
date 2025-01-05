@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-nop/ginstarter/internal/utils/response"
+	"github.com/go-nop/ginstarter/internal/utils"
 )
 
 // PingResponse is the response for ping.
@@ -22,5 +22,5 @@ func PingHandler(c *gin.Context) {
 		Time:    tNow.Format(time.RFC3339),
 	}
 
-	response.SuccessResponse(c, http.StatusOK, result, "successfully ping server")
+	utils.SuccessResponse(c, http.StatusOK, result, "successfully ping server")
 }

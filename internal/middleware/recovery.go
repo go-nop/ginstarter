@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-nop/ginstarter/internal/utils/response"
+	"github.com/go-nop/ginstarter/internal/utils"
 	"github.com/go-nop/ginstarter/pkg/log"
 )
 
@@ -47,7 +47,7 @@ func RecoveryOnPanic() gin.HandlerFunc {
 					c.Abort()
 				} else {
 					c.Status(http.StatusInternalServerError)
-					response.ErrorResponse(c, http.StatusInternalServerError, "internal server error")
+					utils.ErrorResponse(c, http.StatusInternalServerError, "internal server error")
 				}
 			}
 		}()

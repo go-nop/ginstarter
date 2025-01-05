@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-nop/ginstarter/internal/utils/response"
+	"github.com/go-nop/ginstarter/internal/utils"
 	"github.com/go-nop/ginstarter/pkg/log"
 )
 
@@ -28,7 +28,7 @@ func (h *UserHandler) View(c *gin.Context) {
 	if err := c.ShouldBindUri(&req); err != nil {
 		log.Warnf("failed to bind the request: %v", err)
 		_ = c.AbortWithError(http.StatusBadRequest, err)
-		response.ErrorResponse(c, http.StatusBadRequest, "failed to bind the request")
+		utils.ErrorResponse(c, http.StatusBadRequest, "failed to bind the request")
 		return
 	}
 
@@ -41,7 +41,7 @@ func (h *UserHandler) View(c *gin.Context) {
 
 	if user == nil {
 		c.Status(http.StatusNotFound)
-		response.ErrorResponse(c, http.StatusNotFound, "user not found")
+		utils.ErrorResponse(c, http.StatusNotFound, "user not found")
 		return
 	}
 
@@ -52,5 +52,5 @@ func (h *UserHandler) View(c *gin.Context) {
 		UpdatedAt: user.UpdatedAt.Format(time.RFC3339),
 	}
 
-	response.SuccessResponse(c, http.StatusOK, result, "successfully viewed the user")
+	utils.SuccessResponse(c, http.StatusOK, result, "successfully viewed the user")
 }
