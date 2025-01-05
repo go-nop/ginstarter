@@ -63,8 +63,8 @@ ginstarter/
 │   └── db/
 │       ├── migrations/                       # Database migration files
 │       └── connection.go                     # Database connection logic
-├── pkg/
-│   └── log/                                  # Custom reusable packages
+├── pkg/                                     # Reusable packages
+│   └── log/
 │       ├── driver/                           # Log driver implementation
 │       └── log.go                            # Log configuration
 ├── docs/                                     # Documentation
