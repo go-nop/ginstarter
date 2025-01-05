@@ -7,18 +7,20 @@ import (
 
 // App is the configuration for the application.
 type App struct {
-	Name     string
-	Environ  string
-	Timezone string
+	Name      string
+	Environ   string
+	Timezone  string
+	DebugMode bool
 }
 
 // WithAppConfig sets the application configuration.
 func WithAppConfig() Option {
 	return func(c *Config) {
 		c.App = App{
-			Name:     configurator.GetEnv("APP_NAME", consts.DefaultAppName),
-			Environ:  configurator.GetEnv("APP_ENVIRON", consts.DefaultAppEnviron),
-			Timezone: configurator.GetEnv("APP_TIMEZONE", consts.DefaultAppTimezone),
+			Name:      configurator.GetEnv(EnvAppName, consts.DefaultAppName),
+			Environ:   configurator.GetEnv(EnvAppEnviron, consts.DefaultAppEnviron),
+			Timezone:  configurator.GetEnv(EnvAppTimezone, consts.DefaultAppTimezone),
+			DebugMode: configurator.GetEnvAsBool(EnvAppDebugMode, consts.DefaultAppDebugMode),
 		}
 	}
 }

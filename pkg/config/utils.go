@@ -14,5 +14,13 @@ func defaultIfEmpty[T comparable](value, defaultValue T) T {
 // getenv is a helper function that retrieves the value of an environment variable.
 // If the environment variable is not set, it returns an empty string.
 func getenv(key string) string {
-	return os.Getenv(key)
+	if value, exists := os.LookupEnv(key); exists {
+		return value
+	}
+
+	if val := os.Getenv(key); val != "" {
+		return val
+	}
+
+	return ""
 }

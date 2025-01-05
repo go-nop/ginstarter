@@ -8,6 +8,10 @@ const (
 	DefaultAppEnviron = "local"
 	// DefaultAppTimezone is the default timezone of the application.
 	DefaultAppTimezone = "UTC"
+	// DefaultAppPort is the default port the application listens on.
+	DefaultAppPort = "8080"
+	// DefaultAppDebugMode is the default debug mode of the application.
+	DefaultAppDebugMode = false
 )
 
 // Default configuration values for the database.
@@ -24,4 +28,14 @@ const (
 	DefaultDBPassword = "password"
 	// DefaultDBName is the default database name.
 	DefaultDBName = "ginstarter"
+	// DefaultDBSSLMode is the default database SSL mode.
+	DefaultDBSSLMode = "disable"
+	// DefaultDBMaxIdleConns is the default maximum number of idle connections in the connection pool.
+	DefaultDBMaxIdleConns = 10
+	// DefaultDBMaxOpenConns is the default maximum number of open connections to the database.
+	DefaultDBMaxOpenConns = 100
+	// DefaultDBMaxLifetime is the default maximum amount of time a connection may be reused.
+	DefaultDBMaxLifetime = 0
+	// DefaultDBMaxIdleTime is the default maximum amount of time a connection may be idle before being closed.
+	DefaultDBMaxIdleTime = 0
 )

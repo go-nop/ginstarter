@@ -1,7 +1,6 @@
 package log
 
 import (
-	"context"
 	"sync"
 
 	"github.com/go-nop/ginstarter/pkg/log/driver/logrus"
@@ -16,26 +15,37 @@ var (
 // Logger is the interface that wraps the basic logging methods.
 type Logger interface {
 	// Debug logs a message at the debug level.
-	Debug(ctx context.Context, message string, fields ...map[string]any)
+	Debug(message string, fields ...map[string]any)
+	// Debugf logs a formatted message at the debug level.
+	Debugf(format string, args ...any)
 	// Info logs a message at the info level.
-	Info(ctx context.Context, message string, fields ...map[string]any)
+	Info(message string, fields ...map[string]any)
+	// Infof logs a formatted message at the info level.
+	Infof(format string, args ...any)
 	// Warn logs a message at the warn level.
-	Warn(ctx context.Context, message string, fields ...map[string]any)
+	Warn(message string, fields ...map[string]any)
+	// Warnf logs a formatted message at the warn level.
+	Warnf(format string, args ...any)
 	// Error logs a message at the error level.
-	Error(ctx context.Context, message string, fields ...map[string]any)
+	Error(message string, fields ...map[string]any)
+	// Errorf logs a formatted message at the error level.
+	Errorf(format string, args ...any)
 	// Fatal logs a message at the fatal level.
-	Fatal(ctx context.Context, message string, fields ...map[string]any)
+	Fatal(message string, fields ...map[string]any)
 }
+
+// Driver is the type for the logger driver.
+type Driver string
 
 const (
 	// ZapDriver is the zap driver.
-	ZapDriver = "zap"
+	ZapDriver Driver = "zap"
 	// LogrusDriver is the logrus driver.
-	LogrusDriver = "logrus"
+	LogrusDriver Driver = "logrus"
 )
 
 // NewLogger returns a new Logger instance.
-func NewLogger(driver string) Logger {
+func NewLogger(driver Driver) Logger {
 	loggerOnce.Do(func() {
 		switch driver {
 		case LogrusDriver:
@@ -48,26 +58,46 @@ func NewLogger(driver string) Logger {
 }
 
 // Debug logs a message at the debug level.
-func Debug(ctx context.Context, message string, fields ...map[string]any) {
-	log.Debug(ctx, message, fields...)
+func Debug(message string, fields ...map[string]any) {
+	log.Debug(message, fields...)
+}
+
+// Debugf logs a formatted message at the debug level.
+func Debugf(format string, args ...any) {
+	log.Debugf(format, args...)
 }
 
 // Info logs a message at the info level.
-func Info(ctx context.Context, message string, fields ...map[string]any) {
-	log.Info(ctx, message, fields...)
+func Info(message string, fields ...map[string]any) {
+	log.Info(message, fields...)
+}
+
+// Infof logs a formatted message at the info level.
+func Infof(format string, args ...any) {
+	log.Infof(format, args...)
 }
 
 // Warn logs a message at the warn level.
-func Warn(ctx context.Context, message string, fields ...map[string]any) {
-	log.Warn(ctx, message, fields...)
+func Warn(message string, fields ...map[string]any) {
+	log.Warn(message, fields...)
+}
+
+// Warnf logs a formatted message at the warn level.
+func Warnf(format string, args ...any) {
+	log.Warnf(format, args...)
 }
 
 // Error logs a message at the error level.
-func Error(ctx context.Context, message string, fields ...map[string]any) {
-	log.Error(ctx, message, fields...)
+func Error(message string, fields ...map[string]any) {
+	log.Error(message, fields...)
+}
+
+// Errorf logs a formatted message at the error level.
+func Errorf(format string, args ...any) {
+	log.Errorf(format, args...)
 }
 
 // Fatal logs a message at the fatal level.
-func Fatal(ctx context.Context, message string, fields ...map[string]any) {
-	log.Fatal(ctx, message, fields...)
+func Fatal(message string, fields ...map[string]any) {
+	log.Fatal(message, fields...)
 }

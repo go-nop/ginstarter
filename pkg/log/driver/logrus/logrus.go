@@ -1,8 +1,6 @@
 package logrus
 
 import (
-	"context"
-
 	"github.com/sirupsen/logrus"
 )
 
@@ -17,23 +15,39 @@ func NewLogrusLogger() *Logger {
 	return &Logger{log: logger}
 }
 
-func (l *Logger) Debug(ctx context.Context, message string, fields ...map[string]any) {
+func (l *Logger) Debug(message string, fields ...map[string]any) {
 	l.log.WithFields(convertFields(fields)).Debug(message)
 }
 
-func (l *Logger) Info(ctx context.Context, message string, fields ...map[string]any) {
+func (l *Logger) Debugf(format string, args ...any) {
+	l.log.Debugf(format, args...)
+}
+
+func (l *Logger) Info(message string, fields ...map[string]any) {
 	l.log.WithFields(convertFields(fields)).Info(message)
 }
 
-func (l *Logger) Warn(ctx context.Context, message string, fields ...map[string]any) {
+func (l *Logger) Infof(format string, args ...any) {
+	l.log.Infof(format, args...)
+}
+
+func (l *Logger) Warn(message string, fields ...map[string]any) {
 	l.log.WithFields(convertFields(fields)).Warn(message)
 }
 
-func (l *Logger) Error(ctx context.Context, message string, fields ...map[string]any) {
+func (l *Logger) Warnf(format string, args ...any) {
+	l.log.Warnf(format, args...)
+}
+
+func (l *Logger) Error(message string, fields ...map[string]any) {
 	l.log.WithFields(convertFields(fields)).Error(message)
 }
 
-func (l *Logger) Fatal(ctx context.Context, message string, fields ...map[string]any) {
+func (l *Logger) Errorf(format string, args ...any) {
+	l.log.Errorf(format, args...)
+}
+
+func (l *Logger) Fatal(message string, fields ...map[string]any) {
 	l.log.WithFields(convertFields(fields)).Fatal(message)
 }
 

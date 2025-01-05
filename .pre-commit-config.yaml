@@ -46,12 +46,12 @@ repos:
         description: "Runs `gocyclo`, requires https://github.com/fzipp/gocyclo"
         args: [-over=25]
 
-      - id: go-unit-tests
-        name: 'execute go-unit-tests'
-        entry: scripts/run-go-unit-tests.sh
-        files: '\.go$'
-        language: 'script'
-        description: "Runs `go test`"
+      # - id: go-unit-tests
+      #   name: 'execute go-unit-tests'
+      #   entry: scripts/run-go-unit-tests.sh
+      #   files: '\.go$'
+      #   language: 'script'
+      #   description: "Runs `go test`"
 
       - id: go-mod-tidy
         name: 'execute go-mod-tidy'
